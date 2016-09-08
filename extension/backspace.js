@@ -7,7 +7,7 @@ function BackspaceKeyListener(event) {
 	
 	if (!isCtrl && !isAlt) {
 		var target = event.target;
-		if (event.which == 8 && target) {		
+		if (event.which == 8 && target) {
 			// If on text fields or messagequeue
 			// was already triggered disable usage
 			if (target.type == 'text' ||
@@ -17,7 +17,9 @@ function BackspaceKeyListener(event) {
 			
 			} else {
 				// Mark as already triggered
-				window.setTimeout("UseBackspaceShortcut(" + isShift + ")", 0);
+				window.setTimeout(function () {
+						UseBackspaceShortcut(isShift);
+				}, 0);
 				return false;
 			}
 		}
@@ -27,18 +29,9 @@ function BackspaceKeyListener(event) {
 }
 
 function UseBackspaceShortcut(isShift) {
-	// Send message to background.html to test
-	// for activated state
-	chrome.extension.sendRequest( 
-		{ message: JSON.stringify( { command: "isActivated", data: location.href } ) }, 
-		function(response) {
-			console.log(response.message);
-			if (response.message == true)
-				if (!isShift)
-					window.history.back();
-				else
-					window.history.forward();
-		}
-	);
+	if (!isShift)
+		window.history.back();
+	else
+		window.history.forward();
 }
 
