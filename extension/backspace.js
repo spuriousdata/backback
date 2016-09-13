@@ -12,7 +12,7 @@ function BackspaceKeyListener(event) {
 			// was already triggered disable usage
 			if (target.type == 'text' ||
 					target.type == 'textarea' ||
-					target.type == 'password') {
+					target.type == 'password' || target.contentEditable == "true") {
 				return true;
 			
 			} else {
