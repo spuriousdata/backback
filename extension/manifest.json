@@ -1,7 +1,7 @@
 ﻿{
 	"name": "BackBack",
 	"manifest_version": 2,
-	"version": "0.10",
+	"version": "0.0.1",
 	"description": "Backspace for back/forward",
 	"icons": { "128": "128.png" },
 	"permissions": [
